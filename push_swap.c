@@ -6,7 +6,7 @@
 /*   By: zael-wad <zael-wad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:13:20 by zael-wad          #+#    #+#             */
-/*   Updated: 2023/01/14 00:43:54 by zael-wad         ###   ########.fr       */
+/*   Updated: 2023/01/20 21:39:10 by zael-wad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ int max(t_vu *stack_a)
 	return c;
 }
 
+int		min_index(t_vu *stack_a)
+{
+	int i;
+
+	i = 0;
+	while (stack_a->next)
+	{
+		if (stack_a->data == min(stack_a))
+			return (i);
+		i++;
+		stack_a = stack_a->next;
+	}
+	return (0);
+}
+
 int min(t_vu *stack_a)
 {
 	t_vu *k;
@@ -45,11 +60,31 @@ int min(t_vu *stack_a)
 	return c;
 }
 
+int find_min(t_vu	*stack_a)
+{
+	int i;
+	
+	i = 0;
+	while ((stack_a))
+	{
+		if ((stack_a)->data == min(stack_a))
+		{
+			if (i <= ft_lstsize(stack_a) / 2)
+				return (-1);
+			else if (i > ft_lstsize(stack_a) / 2)
+				return (1);
+		}
+		i++;
+		 (stack_a) = (stack_a)->next;
+	}
+	return 1;
+}
+
 int	main(int ac, char *av[])
 {
 	(void)ac;
 	t_vu *stack_a;
-	t_vu *stack_b;
+	// t_vu *stack_b;
 
 	
 	int i, j;
@@ -69,52 +104,24 @@ int	main(int ac, char *av[])
 	// t_vu *pt = stack_a;
 	// if (ft_lstsize(stack_a) == 3)
 	// 	sort_3numb(&stack_a);
-		
 	// else if (ft_lstsize(stack_a) == 5)
-	// {
-		if (stack_a->data != min(stack_a))
-		{
-			rotate_ra(&stack_a);
-			if (stack_a->data != min(stack_a))
-				rotate_ra(&stack_a);
-		}
-		push_b(&stack_a,&stack_b);
-		push_b(&stack_a,&stack_b);
-		sort_3numb(&stack_a);
-		push_a(&stack_a,&stack_b);
-		push_a(&stack_a,&stack_b);
-	
-		// printf(" data %d \n ", stack_a->data);
+	// 	sort_five(&stack_a,&stack_b);
 		
-	// 	if (stack_a->data == min(stack_a))
-	// 	{	
-	// 		push_b(&stack_a,&stack_b);
-	// 		printf("pb\n");
-	// 		push_b(&stack_a,&stack_b);
-	// 		printf("pb\n");
-	// 		sort_3numb(&stack_a);
-	// 	}
-	// 	push_a(&stack_a,&stack_b);
-	// 	printf("pa\n");
-	// 	push_a(&stack_a,&stack_b);
-	// 	printf("pa\n");
-	// }
-	// push_a(&stack_a, &stack_b);
-	// t_vu *k = stack_a;
-
-	// while (k)
-	// {
-	// 	printf("%d\n",k->data);
-	// 	k = k->next;
-	// }
-
+	
 	
 		
 	t_vu *p = stack_a;
+	// t_vu *p1 = stack_b;
 		
-		while (p)
-		{
-			printf(" %d\n ", p->data);
-			p = p->next;
-		}
+	while (p)
+	{
+		printf(" %d\n ", p->data);
+		p = p->next;
+	}
+	sort_tab(stack_a);
+		// while (p1)
+		// {
+		// 	printf(" %d\n ", p1->data);
+		// 	p1 = p1->next;
+		// }
 }
