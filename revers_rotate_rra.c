@@ -6,7 +6,7 @@
 /*   By: zael-wad <zael-wad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 17:52:00 by zael-wad          #+#    #+#             */
-/*   Updated: 2023/01/12 21:37:04 by zael-wad         ###   ########.fr       */
+/*   Updated: 2023/01/22 22:22:39 by zael-wad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void    revers_rotate_rra(t_vu   **stack_a)
         tmp = tmp->next;
     tmp2->next = NULL;
     ft_lstadd_front(stack_a,tmp);
+    printf("rra\n");
 }
     

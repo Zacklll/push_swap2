@@ -6,7 +6,7 @@
 /*   By: zael-wad <zael-wad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:10:06 by zael-wad          #+#    #+#             */
-/*   Updated: 2023/01/20 21:37:39 by zael-wad         ###   ########.fr       */
+/*   Updated: 2023/01/22 21:45:05 by zael-wad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 typedef struct t_vu
 {
     int data;
+    int index;
     struct t_vu *next;
 }           t_vu;   
+
 int     max(t_vu *stack_a);
 int     min(t_vu *stack_a);
 int     find_min(t_vu	*stack_a);
@@ -42,6 +44,7 @@ void	rotate_rb(t_vu **stack_b);
 void	rotate_ra(t_vu **stack_a);
 void    rotate_rrr(t_vu **stack_a, t_vu **stack_b);
 void    sort_3numb(t_vu **stack_a);
-int max(t_vu *stack_a);
+int     max(t_vu *stack_a);
+void	sort_high(t_vu **stack_a, t_vu **stack_b);
 
 #endif
