@@ -6,64 +6,32 @@
 /*   By: zael-wad <zael-wad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:13:20 by zael-wad          #+#    #+#             */
-/*   Updated: 2023/01/22 23:28:19 by zael-wad         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:14:19 by zael-wad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int max(t_vu *stack_a)
+int	find_max_index_stackb(t_vu *stack_b)
 {
-	t_vu *k;
-	k = stack_a;
-	int c;
-
-	c = k->data;
-	while (k->next)
-	{
-		if (c < k->next->data)
-			c = k->next->data;
-		k = k->next;
-	}
-	return c;
-}
-
-int		min_index(t_vu *stack_a)
-{
-	int i;
+	int	i;
 
 	i = 0;
-	while (stack_a->next)
+	while (stack_b)
 	{
-		if (stack_a->data == min(stack_a))
+		if (stack_b->data == max_value(stack_b))
 			return (i);
 		i++;
-		stack_a = stack_a->next;
+		stack_b = stack_b->next;
 	}
 	return (0);
 }
 
-int min(t_vu *stack_a)
+int	find_min(t_vu *stack_a)
 {
-	t_vu *k;
-	k = stack_a;
-	int c;
+	int	i;
 
-	c = k->data;
-	while (k->next)
-	{
-		if (c > k->next->data)
-			c = k->next->data;
-		k = k->next;
-	}
-	return c;
-}
-
-int find_min(t_vu	*stack_a)
-{
-	int i;
-	
 	i = 0;
 	while ((stack_a))
 	{
@@ -75,52 +43,75 @@ int find_min(t_vu	*stack_a)
 				return (1);
 		}
 		i++;
-		 (stack_a) = (stack_a)->next;
+		(stack_a) = (stack_a)->next;
 	}
-	return 1;
+	return (1);
+}
+
+void	check_rep(t_vu *stack_a)
+{
+	t_vu	*tmp;
+	int		i;
+
+	i = 0;
+	while (stack_a->next)
+	{
+		tmp = stack_a->next;
+		while (tmp)
+		{
+			if (stack_a->data == tmp->data)
+			{
+				printf("error");
+				exit(0);
+			}
+			tmp = tmp->next;
+		}
+		stack_a = stack_a->next;
+	}
+}
+
+void	push_swap(t_vu **stack_a)
+{
+	t_vu	*stack_b;
+
+	stack_b = NULL;
+	check_rep(*stack_a);
+	sort_tab(*stack_a);
+	if (ft_lstsize(*stack_a) == 3)
+		sort_3numb(stack_a);
+	else if (ft_lstsize(*stack_a) >= 5 && ft_lstsize(*stack_a) <= 20)
+		sort_five(stack_a, &stack_b);
+	else
+	{
+		if (ft_lstsize(*stack_a) > 300)
+			sort_high2(stack_a, &stack_b);
+		else
+			sort_high(stack_a, &stack_b);
+		push_back_a(stack_a, &stack_b);
+	}
 }
 
 int	main(int ac, char *av[])
 {
-	(void)ac;
-	t_vu *stack_a;
-	t_vu *stack_b;
-	
-	
-	int i, j;
+	int		i;
+	int		j;
+	char	**tmp;
+	t_vu	*stack_a;
+
 	i = 1;
-	char **tmp;
-	while (av[i])
+	if (ac > 2)
 	{
-		j = 0;
-		tmp = ft_split(av[i], ' ');
-		while (tmp[j])
+		while (av[i])
 		{
-			ft_lstadd_back(&stack_a, ft_lstnew(atoi(tmp[j])));
-			j++;
+			j = 0;
+			tmp = ft_split(av[i], ' ');
+			while (tmp[j])
+			{
+				ft_lstadd_back(&stack_a, ft_lstnew(atoi(tmp[j])));
+				j++;
+			}
+			i++;
 		}
-		i++;
 	}
-	
-	sort_tab(stack_a);
-	// t_vu *p5 = stack_a;
-	if (ft_lstsize(stack_a) == 3)
-		sort_3numb(&stack_a);
-	else if (ft_lstsize(stack_a) == 5)
-		sort_five(&stack_a,&stack_b);
-	else if (ft_lstsize(stack_a) > 5)
-			sort_high(&stack_a,&stack_b);
-	// t_vu *p = stack_a;
-	// while (p)
-	// {
-	// 	printf(" %d\n ", p->data);
-	// 	p = p->next;
-	// }
-	// while (stack_b)
-	// {
-	// 	printf(" |||||%d||||||\n ", stack_b->data);
-	// 	stack_b = stack_b->next;
-	// }
-	//system("leaks push_swap.a");
-	
+	push_swap(&stack_a);
 }

@@ -6,7 +6,7 @@
 /*   By: zael-wad <zael-wad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 21:28:10 by zael-wad          #+#    #+#             */
-/*   Updated: 2023/01/22 22:23:52 by zael-wad         ###   ########.fr       */
+/*   Updated: 2023/01/28 21:52:20 by zael-wad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	swap_sb(t_vu **stack_b)
 	t_vu	*head;
 
 	if (!stack_b || ft_lstsize(*stack_b) < 2)
-	    return;
+		return ;
 	head = (*stack_b);
-    (*stack_b) = (*stack_b)->next;
-    (*stack_b) = head;
-	printf("sb\n");
+	(*stack_b) = (*stack_b)->next;
+	(*stack_b) = head;
+	ft_printf("sb\n");
 }

@@ -6,13 +6,13 @@
 /*   By: zael-wad <zael-wad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:26:19 by zael-wad          #+#    #+#             */
-/*   Updated: 2023/01/12 00:18:15 by zael-wad         ###   ########.fr       */
+/*   Updated: 2023/01/28 21:40:25 by zael-wad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 static int	ft_count(char const *s2, char c)
 {
@@ -105,22 +105,22 @@ char	**cpy(char const *st, char **str, char c)
 char	**ft_split(char const *st, char c)
 {
 	char	**str;
-	// int		k;
+	int		k;
 
-	// k = 0;
+	k = 0;
 	str = NULL;
 	if (!st)
 		return (0);
 	str = sto(st, str, c);
-	// if (!str)
-	// {
-	// 	while (str[k] >= 0)
-	// 	{
-	// 		free(str[k]);
-	// 		k--;
-	// 	}
-	// 	free(str);
-	// }
+	if (!str)
+	{
+		while (str[k] >= 0)
+		{
+			free(str[k]);
+			k--;
+		}
+		free(str);
+	}
 	str = cpy(st, str, c);
 	return (str);
 }

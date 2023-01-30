@@ -1,25 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   push_swap_utils1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zael-wad <zael-wad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 20:28:24 by zael-wad          #+#    #+#             */
-/*   Updated: 2023/01/11 20:29:23 by zael-wad         ###   ########.fr       */
+/*   Created: 2023/01/28 21:55:01 by zael-wad          #+#    #+#             */
+/*   Updated: 2023/01/30 12:13:32 by zael-wad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_vu	*ft_lstnew(int a)
+int	max_value(t_vu *stack)
 {
-	t_vu	*ptr;
+	t_vu	*k;
+	int		c;
 
-	ptr = malloc(sizeof(t_vu));
-	if (!ptr)
-		return (0);
-	ptr->data = a;
-	ptr->next = NULL;
-	return (ptr);
+	k = stack;
+	c = k->data;
+	while (k->next)
+	{
+		if (c < k->next->data)
+			c = k->next->data;
+		k = k->next;
+	}
+	return (c);
+}
+
+int	min(t_vu *stack)
+{
+	t_vu	*k;
+	int		c;
+
+	k = stack;
+	c = k->data;
+	while (k->next)
+	{
+		if (c > k->next->data)
+			c = k->next->data;
+		k = k->next;
+	}
+	return (c);
 }

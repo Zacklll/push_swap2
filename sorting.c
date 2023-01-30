@@ -6,7 +6,7 @@
 /*   By: zael-wad <zael-wad@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 21:35:43 by zael-wad          #+#    #+#             */
-/*   Updated: 2023/01/22 23:25:12 by zael-wad         ###   ########.fr       */
+/*   Updated: 2023/01/28 21:52:06 by zael-wad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ static void	ft_sort_int_tab(int *tab, int size)
 
 void	loop_stack_a(t_vu *stack_a, int *p)
 {
-	int		i;
-	// t_vu	*p5;
-	int		size;
+	int	i;
+	int	size;
 
 	i = 0;
 	size = ft_lstsize(stack_a);
@@ -56,49 +55,33 @@ void	loop_stack_a(t_vu *stack_a, int *p)
 			if (stack_a->data == p[i])
 			{
 				stack_a->index = i;
-				// printf("%d ------ %d \n, ", stack_a->index, i);
-				break;
+				break ;
 			}
 			i++;
 		}
 		stack_a = stack_a->next;
 	}
 	free(p);
-// 	printf("\n || %d ------ %d \n, ", stack_a->index, i);
-	
-// 	while (stack_a)
-// 	{
-// 		printf("test : || %d || ", stack_a->index);
-// 		stack_a = stack_a->next;
-// 	}
 }
 
 int	sort_tab(t_vu *stack_a)
 {
-	int i;
-	int *p;
-	t_vu *t;
+	t_vu	*t;
+	int		i;
+	int		*p;
+
 	t = stack_a;
 	i = 0;
 	p = malloc(sizeof(ft_lstsize(stack_a) * sizeof(int)));
 	if (!p)
-		return (free((p)), 0);
+		return (0);
 	while (t)
 	{
 		p[i] = t->data;
 		t = t->next;
 		i++;
 	}
-
 	ft_sort_int_tab(p, i);
-	// printf("|| %d || \n", p[0]);
-	// printf("|| %d || \n", p[1]);
-	// printf("|| %d || \n", p[2]);
-	// printf("|| %d || \n", p[3]);
-	// printf("|| %d || \n", p[4]);
-	// printf("|| %d || \n", p[5]);
-	// printf("|| %d || \n",p[6]);
 	loop_stack_a(stack_a, p);
-
 	return (0);
 }
